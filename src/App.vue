@@ -1,4 +1,6 @@
-<template></template>
+<template>
+  <h1>asdasd</h1>
+</template>
 
 <script>
 export default {
@@ -6,4 +8,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+h1 {
+  color: $orange;
+}
+</style>
