@@ -15,7 +15,12 @@
         <MainNav :isMobile="isMobile" />
         <HeaderActions @toggleCart="toggleCart" />
       </div>
-      <Cart v-show="openedCart" :isEmpty="isEmpty" />
+      <Cart
+        @deleteItem="deleteItem"
+        v-show="openedCart"
+        :isEmpty="isEmpty"
+        :products="products"
+      />
     </header>
   </div>
   <MobileNav :isOpen="isOpen" />
@@ -34,8 +39,16 @@ export default {
     return {
       isMobile: this.detectedWith,
       isOpen: false,
-      openedCart: true,
-      isEmpty: true
+      openedCart: false,
+      isEmpty: true,
+      products: [
+        // {
+        //   id: '1',
+        //   name: 'Fall Limited Edition Sneakers',
+        //   price: 125.0,
+        //   count: 2
+        // }
+      ]
     };
   },
   methods: {
@@ -51,6 +64,12 @@ export default {
     },
     toggleCart() {
       this.openedCart = !this.openedCart;
+    },
+    deleteItem(id) {
+      this.products = this.products.filter((product) => (product.id = id));
+      if (!this.products.length) {
+        this.isEmpty = true;
+      }
     }
   },
   mounted() {

@@ -1,25 +1,26 @@
 <template>
-  <div class="cart__wrapper" :isEmpty="isEmpty">
+  <div class="cart__wrapper" :isEmpty="isEmpty" :products="products">
     <div class="cart__heading">
       <span class="cart__title">Cart</span>
     </div>
     <div class="cart__info">
       <p class="empty" v-if="isEmpty">Your cart is empty</p>
       <div v-else class="products">
-        <div class="product">
+        <div class="product" v-for="product in products" :key="product.name">
           <img
             src="../assets/images/products/image-product-4-thumbnail.jpg"
             class="product__img"
           />
           <div class="product__info">
-            <span class="product__info-item product__title"
-              >Fall Limited Edition Sneakers</span
-            >
+            <span class="product__info-item product__title">{{
+              product.name
+            }}</span>
             <p class="product__info-item product__price">
-              $125.00 <span>x3</span> <strong>$375.00</strong>
+              ${{ product.price }} <span>x {{ product.count }}</span>
+              <strong>${{ product.price * product.count }}</strong>
             </p>
           </div>
-          <button class="product__btn-delete">
+          <button class="product__btn-delete" @click="deleteItem(product.id)">
             <img src="../assets/images/icons/icon-delete.svg" />
           </button>
         </div>
@@ -34,7 +35,14 @@ export default {
   name: 'ProductCart',
   props: {
     isEmpty: Boolean,
-    image: String
+    image: String,
+    products: Array,
+    totalPrice: Number
+  },
+  methods: {
+    deleteItem() {
+      this.$emit('deleteItem');
+    }
   }
 };
 </script>
@@ -102,7 +110,13 @@ export default {
         &__info-item {
           width: 100%;
           display: inline-block;
-          font-size: 14px;
+          font-size: 16px;
+        }
+        &__price {
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 15px;
         }
         &__btn-delete {
           background: none;
