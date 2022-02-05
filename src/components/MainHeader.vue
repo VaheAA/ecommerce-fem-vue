@@ -2,9 +2,13 @@
   <div class="container header__container">
     <header class="header">
       <div class="header__inner">
-        <MobileNav />
+        <BurgerBtn
+          :isOpen="isOpen"
+          :isMobile="isMobile"
+          @click="toggleMobileMenu"
+        />
         <div class="brand">
-          <a href="/">
+          <a class="brand__link" href="/">
             <img class="logo" src="../assets/images/logo.svg" alt="SNEAKERS" />
           </a>
         </div>
@@ -13,17 +17,20 @@
       </div>
     </header>
   </div>
+  <MobileNav :isOpen="isOpen" />
 </template>
 
 <script>
 import MainNav from './MainNav.vue';
 import HeaderActions from './HeaderActions.vue';
+import BurgerBtn from './BurgerBtn.vue';
 import MobileNav from './MobileNav.vue';
 export default {
-  components: {MainNav, HeaderActions, MobileNav},
+  components: {MainNav, HeaderActions, BurgerBtn, MobileNav},
   data() {
     return {
-      isMobile: this.detectedWith
+      isMobile: this.detectedWith,
+      isOpen: false
     };
   },
   methods: {
@@ -33,6 +40,9 @@ export default {
       } else {
         this.isMobile = true;
       }
+    },
+    toggleMobileMenu() {
+      this.isOpen = !this.isOpen;
     }
   },
   mounted() {
@@ -50,7 +60,14 @@ export default {
 .header {
   position: relative;
   padding-bottom: 25px;
-
+  @include breakpoint(small) {
+    padding-bottom: 0;
+  }
+  .brand {
+    &__link {
+      display: inline-block;
+    }
+  }
   &::after {
     content: '';
     position: absolute;
@@ -59,6 +76,10 @@ export default {
     background-color: $lightGrayishBlue;
     bottom: 0;
     left: 0;
+
+    @include breakpoint(small) {
+      display: none;
+    }
   }
 
   &__inner {

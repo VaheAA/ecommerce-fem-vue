@@ -32,6 +32,9 @@ export default {
 
   .cart {
     margin-right: 40px;
+    @include breakpoint(small) {
+      margin-right: 10px;
+    }
     &__btn {
       background: transparent;
       border: none;
@@ -41,6 +44,9 @@ export default {
   .profile {
     max-width: 50px;
     border-radius: 50%;
+    @include breakpoint(small) {
+      max-width: 22px;
+    }
 
     &__btn {
       background: transparent;

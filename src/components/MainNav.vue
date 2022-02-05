@@ -42,7 +42,7 @@ export default {
     color: $darkGrayishBlue;
     position: relative;
     transition: all 0.2s ease;
-    padding-bottom: 38px;
+    padding-bottom: 42px;
 
     &:hover {
       color: $veryDarkBlue;

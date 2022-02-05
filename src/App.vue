@@ -18,5 +18,9 @@ export default {
 }
 .header__container {
   padding: 45px 0;
+
+  @include breakpoint(small) {
+    padding: 20px;
+  }
 }
 </style>
