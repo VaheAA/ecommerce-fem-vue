@@ -1,8 +1,13 @@
 <template>
-  <nav class="nav" aria-label="Primary Navigation">
+  <nav
+    class="nav"
+    aria-label="Primary Navigation"
+    v-if="!isMobile"
+    :isMobile="isMobile"
+  >
     <ul class="nav__list">
       <li class="nav__list-item" v-for="item in navItems" :key="item">
-        <a href="/" class="nav__list-link">{{ item }}</a>
+        <a href="#" class="nav__list-link">{{ item }}</a>
       </li>
     </ul>
   </nav>
@@ -11,6 +16,9 @@
 <script>
 export default {
   name: 'MainNav',
+  props: {
+    isMobile: Boolean
+  },
   data() {
     return {
       navItems: ['Men', 'Women', 'About', 'Contact']

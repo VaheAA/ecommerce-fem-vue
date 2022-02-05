@@ -47,6 +47,7 @@ export default {
       border: none;
       cursor: pointer;
       width: 100%;
+      border-radius: 50%;
     }
 
     &__avatar {
@@ -54,7 +55,6 @@ export default {
       height: auto;
       object-fit: cover;
       border-radius: 50%;
-      transition: all 0.2s ease;
       &:hover {
         border: 2px solid $orange;
       }

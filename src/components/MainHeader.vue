@@ -2,12 +2,13 @@
   <div class="container header__container">
     <header class="header">
       <div class="header__inner">
+        <MobileNav />
         <div class="brand">
           <a href="/">
             <img class="logo" src="../assets/images/logo.svg" alt="SNEAKERS" />
           </a>
         </div>
-        <MainNav />
+        <MainNav :isMobile="isMobile" />
         <HeaderActions />
       </div>
     </header>
@@ -17,7 +18,32 @@
 <script>
 import MainNav from './MainNav.vue';
 import HeaderActions from './HeaderActions.vue';
-export default {components: {MainNav, HeaderActions}};
+import MobileNav from './MobileNav.vue';
+export default {
+  components: {MainNav, HeaderActions, MobileNav},
+  data() {
+    return {
+      isMobile: this.detectedWith
+    };
+  },
+  methods: {
+    detectWidth() {
+      if (window.innerWidth > 550) {
+        this.isMobile = false;
+      } else {
+        this.isMobile = true;
+      }
+    }
+  },
+  mounted() {
+    this.detectWidth();
+    window.addEventListener('resize', this.detectWidth);
+  },
+  beforeMount() {
+    this.detectWidth();
+    window.addEventListener('resize', this.detectWidth);
+  }
+};
 </script>
 
 <style lang="scss">
