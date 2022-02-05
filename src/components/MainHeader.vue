@@ -13,8 +13,9 @@
           </a>
         </div>
         <MainNav :isMobile="isMobile" />
-        <HeaderActions />
+        <HeaderActions @toggleCart="toggleCart" />
       </div>
+      <Cart v-show="openedCart" :isEmpty="isEmpty" />
     </header>
   </div>
   <MobileNav :isOpen="isOpen" />
@@ -25,17 +26,21 @@ import MainNav from './MainNav.vue';
 import HeaderActions from './HeaderActions.vue';
 import BurgerBtn from './BurgerBtn.vue';
 import MobileNav from './MobileNav.vue';
+import Cart from './Cart.vue';
+
 export default {
-  components: {MainNav, HeaderActions, BurgerBtn, MobileNav},
+  components: {MainNav, HeaderActions, BurgerBtn, MobileNav, Cart},
   data() {
     return {
       isMobile: this.detectedWith,
-      isOpen: false
+      isOpen: false,
+      openedCart: true,
+      isEmpty: true
     };
   },
   methods: {
     detectWidth() {
-      if (window.innerWidth > 550) {
+      if (window.innerWidth > 727) {
         this.isMobile = false;
       } else {
         this.isMobile = true;
@@ -43,6 +48,9 @@ export default {
     },
     toggleMobileMenu() {
       this.isOpen = !this.isOpen;
+    },
+    toggleCart() {
+      this.openedCart = !this.openedCart;
     }
   },
   mounted() {
@@ -64,6 +72,10 @@ export default {
     padding-bottom: 0;
   }
   .brand {
+    margin-right: 50px;
+    @include breakpoint(small) {
+      margin-right: 0;
+    }
     &__link {
       display: inline-block;
     }

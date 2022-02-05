@@ -1,7 +1,7 @@
 <template>
   <div class="actions">
     <div class="cart">
-      <button class="cart__btn">
+      <button class="cart__btn" @click="toggleCart">
         <img src="../assets/images/icons/icon-cart.svg" />
       </button>
     </div>
@@ -19,7 +19,12 @@
 
 <script>
 export default {
-  name: 'HeaderActions'
+  name: 'HeaderActions',
+  methods: {
+    toggleCart() {
+      this.$emit('toggleCart');
+    }
+  }
 };
 </script>
 
