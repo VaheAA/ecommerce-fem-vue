@@ -16,4 +16,7 @@ export default {
   padding: 0 20px;
   margin: 0 auto;
 }
+.header__container {
+  padding: 45px 0;
+}
 </style>

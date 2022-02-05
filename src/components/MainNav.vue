@@ -19,4 +19,37 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+  &__list-item {
+    &:not(:last-child) {
+      margin-right: 30px;
+    }
+  }
+  &__list-link {
+    color: $darkGrayishBlue;
+    position: relative;
+    transition: all 0.2s ease;
+    padding-bottom: 38px;
+
+    &:hover {
+      color: $veryDarkBlue;
+    }
+
+    &:hover::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background: $orange;
+      bottom: 0;
+      left: 0;
+      transition: all 0.2s ease;
+    }
+  }
+}
+</style>

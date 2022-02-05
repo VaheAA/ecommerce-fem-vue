@@ -67,3 +67,12 @@ h6 {
 #__next {
   isolation: isolate;
 }
+
+a,
+a:active {
+  text-decoration: none;
+}
+ul,
+ol {
+  list-style: none;
+}
