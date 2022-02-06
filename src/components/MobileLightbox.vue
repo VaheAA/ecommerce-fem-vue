@@ -3,21 +3,33 @@
     <div class="lightbox__slider-wrapper">
       <div class="lightbox__slider-slide">
         <span v-for="image in imagesData" :key="image.id">
-          <img :src="image.fullImage" v-show="image.id === currentSlide" />
+          <img
+            :src="image.fullImage"
+            v-show="image.id === currentSlide"
+            alt="images"
+          />
         </span>
       </div>
       <div class="lightbox__slider-controls">
         <button
+          aria-label="get previous image"
           class="lightbox__slider-btn lightbox__slider-btn--prev"
           @click="previousImage"
         >
-          <img src="../assets/images/icons/icon-previous.svg" />
+          <img
+            src="../assets/images/icons/icon-previous.svg"
+            alt="previous image icon"
+          />
         </button>
         <button
+          aria-label="get next image"
           class="lightbox__slider-btn lightbox__slider-btn--next"
           @click="nextImage"
         >
-          <img src="../assets/images/icons/icon-next.svg" />
+          <img
+            src="../assets/images/icons/icon-next.svg"
+            alt="next image icon"
+          />
         </button>
       </div>
     </div>

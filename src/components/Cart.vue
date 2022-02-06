@@ -14,6 +14,7 @@
           <img
             src="../assets/images/products/image-product-4-thumbnail.jpg"
             class="product__img"
+            alt="product preview"
           />
           <div class="product__info">
             <span class="product__info-item product__title">{{
@@ -25,7 +26,10 @@
             </p>
           </div>
           <button class="product__btn-delete" @click="deleteItem(product.id)">
-            <img src="../assets/images/icons/icon-delete.svg" />
+            <img
+              src="../assets/images/icons/icon-delete.svg"
+              alt="delete product icon"
+            />
           </button>
         </div>
         <button class="product__btn-checkout">Checkout</button>

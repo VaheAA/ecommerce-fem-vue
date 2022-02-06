@@ -1,16 +1,27 @@
 <template>
   <div class="product__cta">
     <div class="product__count">
-      <button class="product__cta-btn" @click="decreaseCount">
-        <img src="../assets/images/icons/icon-minus.svg" alt="" />
+      <button
+        aria-label="decrease product count"
+        class="product__cta-btn"
+        @click="decreaseCount"
+      >
+        <img src="../assets/images/icons/icon-minus.svg" alt="decrease icon" />
       </button>
       <span>{{ count }}</span>
-      <button class="product__cta-btn" @click="increaseCount">
-        <img src="../assets/images/icons/icon-plus.svg" alt="" />
+      <button
+        aria-label="increase product count"
+        class="product__cta-btn"
+        @click="increaseCount"
+      >
+        <img src="../assets/images/icons/icon-plus.svg" alt="increase icon" />
       </button>
     </div>
-    <button class="product__add" @click="addToCart">
-      <img src="../assets/images/icons/icon-cart-white.svg" />
+    <button aria-label="add to cart" class="product__add" @click="addToCart">
+      <img
+        src="../assets/images/icons/icon-cart-white.svg"
+        alt="add to cart icon"
+      />
       Add to cart
     </button>
   </div>

@@ -1,17 +1,17 @@
 <template>
   <div class="actions">
     <div class="cart">
-      <button class="cart__btn" @click="toggleCart">
+      <button class="cart__btn" @click="toggleCart" aria-label="open cart">
         <span class="cart-count" v-if="cartCount > 0">{{ cartCount }}</span>
-        <img src="../assets/images/icons/icon-cart.svg" />
+        <img src="../assets/images/icons/icon-cart.svg" alt="cart icon" />
       </button>
     </div>
     <div class="profile">
-      <button class="profile__btn">
+      <button class="profile__btn" aria-label="open profile">
         <img
           class="profile__avatar"
           src="../assets/images/image-avatar.png"
-          alt=""
+          alt="user avatar"
         />
       </button>
     </div>

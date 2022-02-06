@@ -1,7 +1,11 @@
 <template>
   <div class="burger" v-if="isMobile" :isMobile="isMobile">
     <button class="burger__btn">
-      <img :src="!isOpen ? openIcon : closeIcon" :isOpen="isOpen" />
+      <img
+        :src="!isOpen ? openIcon : closeIcon"
+        :isOpen="isOpen"
+        alt="burger icon"
+      />
     </button>
   </div>
 </template>

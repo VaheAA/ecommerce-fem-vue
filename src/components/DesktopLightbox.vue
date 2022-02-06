@@ -24,6 +24,7 @@
             class="lightbox__modal-image"
             :src="image.fullImage"
             v-show="image.id === selectedModalImage"
+            alt="product image"
           />
         </span>
       </div>
@@ -34,24 +35,40 @@
           @click="changeModalImage(image.id)"
           :class="[selectedModalImage === image.id ? 'active' : '']"
         >
-          <img class="lightbox__modal-thumbnail-image" :src="image.thumbnail" />
+          <img
+            class="lightbox__modal-thumbnail-image"
+            :src="image.thumbnail"
+            alt="product thumbnail"
+          />
         </span>
       </div>
       <div class="lightbox__modal-controls">
         <button
+          aria-label="get previous image"
           class="lightbox__modal-btn lightbox__modal-btn--prev"
           @click="previousImage"
         >
-          <img src="../assets/images/icons/icon-previous.svg" />
+          <img
+            src="../assets/images/icons/icon-previous.svg"
+            alt="get previous image"
+          />
         </button>
         <button
+          aria-label="get next image"
           class="lightbox__modal-btn lightbox__modal-btn--next"
           @click="nextImage"
         >
-          <img src="../assets/images/icons/icon-next.svg" />
+          <img
+            src="../assets/images/icons/icon-next.svg"
+            alt="get next image"
+          />
         </button>
       </div>
-      <button class="lightbox__modal-close" @click="closeModal">
+      <button
+        aria-label="close modal"
+        class="lightbox__modal-close"
+        @click="closeModal"
+      >
         <img src="../assets/images/icons/icon-close-white.svg" />
       </button>
     </div>
