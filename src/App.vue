@@ -8,14 +8,14 @@
     :cartCount="cartProducts.length"
   />
   <ProductCard
-    :newPrice="product.newPrice"
+    :newPrice="product.newPrice.toFixed(2)"
     :count="count"
     @increaseCount="increaseCount"
     @decreaseCount="decreaseCount"
     @addToCart="addToCart(product.id)"
     :title="product.title"
     :description="product.description"
-    :oldPrice="product.oldPrice"
+    :oldPrice="product.oldPrice.toFixed(2)"
     :discount="product.discount"
   />
 </template>
@@ -34,7 +34,7 @@ export default {
         title: 'Fall limited Edition Sneakers ',
         description:
           'These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything theweather can offer.',
-        newPrice: 125,
+        newPrice: 125.0,
         discount: 50,
         oldPrice: 250.0
       },
@@ -68,7 +68,7 @@ export default {
       const cartProduct = {
         id: this.product.id,
         title: this.product.title,
-        newPrice: this.product.newPrice,
+        newPrice: this.product.newPrice.toFixed(2),
         count: this.count < 1 ? 1 : this.count
       };
       if (this.cartProducts.length) {
