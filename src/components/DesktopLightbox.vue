@@ -12,7 +12,11 @@
         @click="changeImage(image.id)"
         :class="[selectedImage === image.id ? 'active' : '']"
       >
-        <img class="lightbox__thumbnails-image" :src="image.thumbnail" />
+        <img
+          class="lightbox__thumbnails-image"
+          :src="image.thumbnail"
+          alt="product image thumbnail"
+        />
       </span>
     </div>
   </div>
@@ -69,7 +73,10 @@
         class="lightbox__modal-close"
         @click="closeModal"
       >
-        <img src="../assets/images/icons/icon-close-white.svg" />
+        <img
+          src="../assets/images/icons/icon-close-white.svg"
+          alt="close modal icon"
+        />
       </button>
     </div>
   </div>
