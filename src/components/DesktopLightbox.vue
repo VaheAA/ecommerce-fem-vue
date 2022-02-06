@@ -10,6 +10,7 @@
         v-for="image in imagesData"
         :key="image.id"
         @click="changeImage(image.id)"
+        :class="[selectedImage === image.id ? 'active' : '']"
       >
         <img class="lightbox__thumbnails-image" :src="image.thumbnail" />
       </span>
@@ -17,13 +18,15 @@
   </div>
   <div class="lightbox__modal" v-if="isOpen" @click.self="closeModal">
     <div class="lightbox__modal-wrapper">
-      <span v-for="image in imagesData" :key="image.id">
-        <img
-          class="lightbox__modal-image"
-          :src="image.fullImage"
-          v-show="image.id === selectedModalImage"
-        />
-      </span>
+      <div class="lightbox__modal-images">
+        <span v-for="image in imagesData" :key="image.id">
+          <img
+            class="lightbox__modal-image"
+            :src="image.fullImage"
+            v-show="image.id === selectedModalImage"
+          />
+        </span>
+      </div>
       <div class="lightbox__modal-thumbnails">
         <span
           v-for="image in imagesData"
@@ -109,10 +112,12 @@ export default {
     openModal(id) {
       this.selectedModalImage = id;
       this.isOpen = true;
+      document.body.style.overflow = 'hidden';
     },
     closeModal() {
       this.isOpen = false;
       this.selectedModalImage = null;
+      document.body.style.overflow = 'scroll';
     }
   }
 };
@@ -141,8 +146,21 @@ export default {
     span {
       transition: all 0.2s ease;
       border-radius: 10px;
-      &:hover {
-        border: 2px solid $orange;
+
+      &.active {
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba($color: #fff, $alpha: 0.6);
+          border-radius: 10px;
+          border: 2px solid $orange;
+        }
       }
     }
   }
@@ -172,6 +190,9 @@ export default {
 
     &-wrapper {
       position: relative;
+    }
+    &-images {
+      display: flex;
     }
     &-close {
       position: absolute;

@@ -7,7 +7,17 @@
     @deleteItem="deleteItem"
     :cartCount="cartProducts.length"
   />
-  <ProductCard />
+  <ProductCard
+    :newPrice="product.newPrice"
+    :count="count"
+    @increaseCount="increaseCount"
+    @decreaseCount="decreaseCount"
+    @addToCart="addToCart(product.id)"
+    :title="product.title"
+    :description="product.description"
+    :oldPrice="product.oldPrice"
+    :discount="product.discount"
+  />
 </template>
 
 <script>
@@ -18,15 +28,18 @@ export default {
   components: {MainHeader, ProductCard},
   data() {
     return {
-      cartProducts: [
-        {
-          id: '1',
-          name: 'Best Sneakers',
-          price: 125.0,
-          count: 1
-        }
-      ],
+      cartProducts: [],
+      product: {
+        id: '1',
+        title: 'Fall limited Edition Sneakers ',
+        description:
+          'These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they’ll withstand everything theweather can offer.',
+        newPrice: 125,
+        discount: 50,
+        oldPrice: 250.0
+      },
       isEmpty: true,
+      count: 0,
       openedCart: false
     };
   },
@@ -41,12 +54,42 @@ export default {
       if (!this.cartProducts.length) {
         this.isEmpty = true;
       }
+    },
+    increaseCount() {
+      this.count += 1;
+    },
+    decreaseCount() {
+      this.count -= 1;
+      if (this.count < 1) {
+        this.count = 0;
+      }
+    },
+    addToCart(id) {
+      const cartProduct = {
+        id: this.product.id,
+        title: this.product.title,
+        newPrice: this.product.newPrice,
+        count: this.count < 1 ? 1 : this.count
+      };
+      if (this.cartProducts.length) {
+        this.cartProducts.forEach((product) => {
+          if (id === product.id && this.count === 0) {
+            product.count += this.count + 1;
+          } else {
+            product.count += this.count;
+          }
+        });
+      } else {
+        this.cartProducts.push(cartProduct);
+        this.isEmpty = false;
+      }
     }
   },
   created() {
     if (this.cartProducts.length) {
       this.isEmpty = false;
     }
+    this.count = 0;
   }
 };
 </script>

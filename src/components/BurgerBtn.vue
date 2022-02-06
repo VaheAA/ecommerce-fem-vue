@@ -25,7 +25,7 @@ export default {
 <style lang="scss">
 .burger {
   margin-right: 15px;
-  z-index: 10;
+  z-index: 16;
   &__btn {
     background: transparent;
     border: none;

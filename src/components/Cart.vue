@@ -9,7 +9,7 @@
         <div
           class="product"
           v-for="product in cartProducts"
-          :key="product.name"
+          :key="product.title"
         >
           <img
             src="../assets/images/products/image-product-4-thumbnail.jpg"
@@ -17,11 +17,11 @@
           />
           <div class="product__info">
             <span class="product__info-item product__title">{{
-              product.name
+              product.title
             }}</span>
             <p class="product__info-item product__price">
-              ${{ product.price }} <span>x {{ product.count }}</span>
-              <strong>${{ product.price * product.count }}</strong>
+              ${{ product.newPrice }} <span>x {{ product.count }}</span>
+              <strong>${{ product.newPrice * product.count }}</strong>
             </p>
           </div>
           <button class="product__btn-delete" @click="deleteItem(product.id)">
@@ -55,15 +55,15 @@ export default {
 .cart__wrapper {
   max-width: 360px;
   width: 100%;
-  max-height: 260px;
+  min-height: 260px;
   height: 260px;
   border-radius: 10px;
   box-shadow: 0px 12px 12px 1px rgba($color: #000000, $alpha: 0.5);
-  margin-left: auto;
-
-  @include breakpoint(small) {
-    margin-top: 40px;
-  }
+  background: $white;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  z-index: 10;
 
   .cart__heading {
     position: relative;
@@ -100,11 +100,18 @@ export default {
       padding: 25px;
       display: flex;
       flex-direction: column;
+      @include breakpoint(small) {
+        padding: 10px;
+      }
       .product {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding-bottom: 35px;
+        @include breakpoint(small) {
+          justify-content: flex-start;
+          gap: 15px;
+        }
 
         &__img {
           max-width: 55px;
@@ -120,11 +127,19 @@ export default {
           display: inline-block;
           font-size: 16px;
         }
+        &__title {
+          color: $darkGrayishBlue;
+        }
         &__price {
           display: flex;
           justify-content: flex-start;
           align-items: center;
           gap: 15px;
+          color: $darkGrayishBlue;
+
+          strong {
+            color: $veryDarkBlue;
+          }
         }
         &__btn-delete {
           background: none;

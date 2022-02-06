@@ -80,6 +80,7 @@ export default {
   &-slide {
     width: 100%;
     max-height: 300px;
+    overflow: hidden;
   }
   &-controls {
     position: absolute;

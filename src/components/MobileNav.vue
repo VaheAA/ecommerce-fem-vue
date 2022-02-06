@@ -35,6 +35,7 @@ export default {
   background: rgba($color: #000000, $alpha: 0.75);
   transform: translateX(-100%);
   transition: all 0.3s linear;
+  z-index: 15;
   &.open {
     transform: translateX(0);
     transition: all 0.3s linear;

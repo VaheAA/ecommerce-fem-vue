@@ -1,17 +1,39 @@
 <template>
-  <div :class="{container: !isMobile}">
-    <div class="product-card">
+  <main>
+    <div class="product-card" :class="{container: !isMobile}">
       <DesktopLightbox v-if="!isMobile" />
       <MobileLightbox v-else />
+      <div class="container">
+        <ProductInfo
+          :title="title"
+          :description="description"
+          :newPrice="newPrice"
+          :oldPrice="oldPrice"
+          :discount="discount"
+          :count="count"
+          @increaseCount="increaseCount"
+          @decreaseCount="decreaseCount"
+          @addToCart="addToCart"
+        />
+      </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
 import DesktopLightbox from './DesktopLightbox.vue';
 import MobileLightbox from './MobileLightbox.vue';
+import ProductInfo from './ProductInfo.vue';
 export default {
-  components: {MobileLightbox, DesktopLightbox},
+  components: {MobileLightbox, DesktopLightbox, ProductInfo},
+  props: {
+    title: String,
+    description: String,
+    newPrice: Number,
+    discount: Number,
+    oldPrice: Number,
+    count: Number
+  },
   data() {
     return {
       isMobile: this.detectWidth
@@ -24,6 +46,15 @@ export default {
       } else {
         this.isMobile = true;
       }
+    },
+    increaseCount() {
+      this.$emit('increaseCount');
+    },
+    decreaseCount() {
+      this.$emit('decreaseCount');
+    },
+    addToCart() {
+      this.$emit('addToCart');
     }
   },
   mounted() {
@@ -37,4 +68,15 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.product-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 120px;
+  @include breakpoint(small) {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+</style>

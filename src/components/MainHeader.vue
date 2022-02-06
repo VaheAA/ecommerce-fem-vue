@@ -58,6 +58,11 @@ export default {
     },
     toggleMobileMenu() {
       this.isOpen = !this.isOpen;
+      if (this.isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'scroll';
+      }
     },
     toggleCart() {
       this.openedCart = !this.openedCart;
@@ -104,6 +109,7 @@ export default {
     background-color: $lightGrayishBlue;
     bottom: 0;
     left: 0;
+    z-index: -1;
 
     @include breakpoint(small) {
       display: none;
