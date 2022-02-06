@@ -13,13 +13,13 @@
           </a>
         </div>
         <MainNav :isMobile="isMobile" />
-        <HeaderActions @toggleCart="toggleCart" />
+        <HeaderActions @toggleCart="toggleCart" :cartCount="cartCount" />
       </div>
       <Cart
         @deleteItem="deleteItem"
         v-show="openedCart"
         :isEmpty="isEmpty"
-        :products="products"
+        :cartProducts="cartProducts"
       />
     </header>
   </div>
@@ -35,20 +35,17 @@ import Cart from './Cart.vue';
 
 export default {
   components: {MainNav, HeaderActions, BurgerBtn, MobileNav, Cart},
+  props: {
+    cartProducts: Array,
+    isEmpty: Boolean,
+    openedCart: Boolean,
+    cartCount: Number
+  },
+  emits: ['toggleCart', 'deleteItem'],
   data() {
     return {
-      isMobile: this.detectedWith,
-      isOpen: false,
-      openedCart: false,
-      isEmpty: true,
-      products: [
-        // {
-        //   id: '1',
-        //   name: 'Fall Limited Edition Sneakers',
-        //   price: 125.0,
-        //   count: 2
-        // }
-      ]
+      isMobile: this.detectWidth,
+      isOpen: false
     };
   },
   methods: {
@@ -65,11 +62,11 @@ export default {
     toggleCart() {
       this.openedCart = !this.openedCart;
     },
-    deleteItem(id) {
-      this.products = this.products.filter((product) => (product.id = id));
-      if (!this.products.length) {
-        this.isEmpty = true;
-      }
+    toggleCart() {
+      this.$emit('toggleCart');
+    },
+    deleteItem() {
+      this.$emit('deleteItem');
     }
   },
   mounted() {

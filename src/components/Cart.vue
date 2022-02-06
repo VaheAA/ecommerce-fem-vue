@@ -1,12 +1,16 @@
 <template>
-  <div class="cart__wrapper" :isEmpty="isEmpty" :products="products">
+  <div class="cart__wrapper" :isEmpty="isEmpty" :cartProducts="cartProducts">
     <div class="cart__heading">
       <span class="cart__title">Cart</span>
     </div>
     <div class="cart__info">
       <p class="empty" v-if="isEmpty">Your cart is empty</p>
       <div v-else class="products">
-        <div class="product" v-for="product in products" :key="product.name">
+        <div
+          class="product"
+          v-for="product in cartProducts"
+          :key="product.name"
+        >
           <img
             src="../assets/images/products/image-product-4-thumbnail.jpg"
             class="product__img"
@@ -36,7 +40,7 @@ export default {
   props: {
     isEmpty: Boolean,
     image: String,
-    products: Array,
+    cartProducts: Array,
     totalPrice: Number
   },
   methods: {
@@ -56,6 +60,10 @@ export default {
   border-radius: 10px;
   box-shadow: 0px 12px 12px 1px rgba($color: #000000, $alpha: 0.5);
   margin-left: auto;
+
+  @include breakpoint(small) {
+    margin-top: 40px;
+  }
 
   .cart__heading {
     position: relative;
