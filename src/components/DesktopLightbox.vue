@@ -2,7 +2,11 @@
   <div class="lightbox">
     <div class="lightbox__image" v-for="image in imagesData" :key="image.id">
       <span v-show="image.id === selectedImage" @click="openModal(image.id)">
-        <img class="lightbox__image--main" :src="image.fullImage" />
+        <img
+          class="lightbox__image--main"
+          :src="image.fullImage"
+          alt="product image in lightbox"
+        />
       </span>
     </div>
     <div class="lightbox__thumbnails">
